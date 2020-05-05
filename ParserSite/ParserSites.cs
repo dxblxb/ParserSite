@@ -26,11 +26,11 @@ namespace ParserSite
         {
             HtmlParser htmlParser = new HtmlParser();
             var parsePage = htmlParser.ParseDocument(page);
-            table = parsePage.QuerySelector("table.matches").OuterHtml;
+            //table = parsePage.QuerySelector("table.matches").OuterHtml;
             List<string> matches = new List<string>(); 
-            foreach (var tmp in parsePage.QuerySelectorAll("tr.match"))
+            foreach (var tmp in parsePage.QuerySelectorAll("div.event__match"))
             {
-                matches.Add(tmp.InnerHtml);
+                matches.Add(tmp.OuterHtml);
             }
             return matches.ToArray();
         }

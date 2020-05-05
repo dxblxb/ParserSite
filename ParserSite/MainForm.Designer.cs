@@ -29,28 +29,42 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.BtnStart = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.TBUrl = new System.Windows.Forms.TextBox();
-            this.RTBLog = new System.Windows.Forms.RichTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.webControl1 = new EO.WinForm.WebControl();
             this.Browser = new EO.WebBrowser.WebView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.TBUrl = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.RTBLog = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.BtnStart);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(110, 611);
             this.panel1.TabIndex = 0;
+            // 
+            // BtnStart
+            // 
+            this.BtnStart.Location = new System.Drawing.Point(12, 12);
+            this.BtnStart.Name = "BtnStart";
+            this.BtnStart.Size = new System.Drawing.Size(75, 23);
+            this.BtnStart.TabIndex = 0;
+            this.BtnStart.Text = "Старт";
+            this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // panel2
             // 
@@ -62,24 +76,22 @@
             this.panel2.Size = new System.Drawing.Size(690, 500);
             this.panel2.TabIndex = 1;
             // 
-            // panel3
+            // webControl1
             // 
-            this.panel3.Controls.Add(this.RTBLog);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(110, 500);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(690, 111);
-            this.panel3.TabIndex = 2;
+            this.webControl1.BackColor = System.Drawing.Color.White;
+            this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webControl1.Location = new System.Drawing.Point(0, 21);
+            this.webControl1.Name = "webControl1";
+            this.webControl1.Size = new System.Drawing.Size(690, 479);
+            this.webControl1.TabIndex = 1;
+            this.webControl1.Text = "webControl1";
+            this.webControl1.WebView = this.Browser;
             // 
-            // BtnStart
+            // Browser
             // 
-            this.BtnStart.Location = new System.Drawing.Point(12, 12);
-            this.BtnStart.Name = "BtnStart";
-            this.BtnStart.Size = new System.Drawing.Size(75, 23);
-            this.BtnStart.TabIndex = 0;
-            this.BtnStart.Text = "Старт";
-            this.BtnStart.UseVisualStyleBackColor = true;
-            this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            this.Browser.InputMsgFilter = null;
+            this.Browser.ObjectForScripting = null;
+            this.Browser.Title = null;
             // 
             // panel4
             // 
@@ -99,6 +111,15 @@
             this.TBUrl.TabIndex = 0;
             this.TBUrl.Text = "https:\\\\foto-lavka.ru";
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.RTBLog);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(110, 500);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(690, 111);
+            this.panel3.TabIndex = 2;
+            // 
             // RTBLog
             // 
             this.RTBLog.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -108,22 +129,24 @@
             this.RTBLog.TabIndex = 0;
             this.RTBLog.Text = "";
             // 
-            // webControl1
+            // button1
             // 
-            this.webControl1.BackColor = System.Drawing.Color.White;
-            this.webControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webControl1.Location = new System.Drawing.Point(0, 21);
-            this.webControl1.Name = "webControl1";
-            this.webControl1.Size = new System.Drawing.Size(690, 479);
-            this.webControl1.TabIndex = 1;
-            this.webControl1.Text = "webControl1";
-            this.webControl1.WebView = this.Browser;
+            this.button1.Location = new System.Drawing.Point(12, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Browser
+            // label1
             // 
-            this.Browser.InputMsgFilter = null;
-            this.Browser.ObjectForScripting = null;
-            this.Browser.Title = null;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "label1";
             // 
             // MainForm
             // 
@@ -137,10 +160,11 @@
             this.Text = "ParserSite";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -156,6 +180,8 @@
         private System.Windows.Forms.RichTextBox RTBLog;
         private EO.WinForm.WebControl webControl1;
         private EO.WebBrowser.WebView Browser;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

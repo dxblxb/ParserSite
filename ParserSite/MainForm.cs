@@ -15,7 +15,7 @@ namespace ParserSite
         public MainForm()
         {
             InitializeComponent();
-            Browser.Url = "https://ru.soccerway.com/teams/england/leicester-city-fc/682/matches/";
+            Browser.Url = "https://www.scoreboard.com/ru/football/england/premier-league-2018-2019/results/";
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -26,7 +26,19 @@ namespace ParserSite
             string page = Browser.GetHtml();
             string[] matches = ParserSites.GetMatches(page);
             //Browser.DocumentText = ParserSites.table;
-            RTBLog.Text = matches.First();
+            RTBLog.Clear();
+            label1.Text = matches.Length.ToString();
+            for (int i = 0; i<matches.Length; ++i)
+            {
+                RTBLog.AppendText(matches[i]);
+                RTBLog.AppendText("\n---------------------------\n");
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Browser.Url = "https://www.scoreboard.com/ru/match/tjScDhWo/#match-summary";
         }
     }
 }
