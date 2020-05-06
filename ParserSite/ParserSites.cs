@@ -60,19 +60,21 @@ namespace ParserSite
                 if (matchState.AwayPlayers.Count > 17) break;
                 matchState.AwayPlayers.Add(AwayPlayers.TextContent);
             }
-            //Замены		Title	"77' Вуд К. (Крауч П.)"	string
+            //Замены		
 
-            string[] Replays = new string[4];
-            var tak = parsePage.QuerySelector("td.fl>div.icon-lineup>span.substitution-out");
-            var tmp = tak.Parent;
-            string str = tmp.t;
-            //foreach (var HomeReplays in parsePage.QuerySelectorAll("td.fr>div.name>div.icon-lineup"))
-            //{
-            //    //if (matchState.HomePlayers.Count > 17) break;
-            //    var tmp = HomeReplays.Parent;
-            //    matchState.HomePlayers.Add(HomeReplays.TextContent);
-            //}
-            //matchState.ReplaysPlayers.Add(Replays);
+            string[] Replace = new string[4];
+            //var tak = parsePage.QuerySelector("td.fl>div.icon-lineup>span.substitution-out");
+            //var tmp = tak.Parent;
+            //string str = (tmp as AngleSharp.Html.Dom.IHtmlDivElement).Title;
+            var i = 0;
+            foreach (var HomeReplays in parsePage.QuerySelectorAll("td.fl>div.icon-lineup>span.substitution-out"))
+            {
+                
+                //if (matchState.HomePlayers.Count > 17) break;
+                var tmp = HomeReplays.Parent;
+                Replace[i] = (tmp as AngleSharp.Html.Dom.IHtmlDivElement).Title;
+                ++i;
+            }
 
 
 

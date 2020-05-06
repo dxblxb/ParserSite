@@ -15,6 +15,6 @@ namespace ParserSite
         public string MatchScoreAway = "";
         public List<string> HomePlayers = new List<string>();
         public List<string> AwayPlayers = new List<string>();
-        public List<string[]> ReplaysPlayers = new List<string[]>();
+        public List<string[]> ReplacePlayers = new List<string[]>();
     }
 }
