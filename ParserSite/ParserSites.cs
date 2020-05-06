@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Leaf.xNet;
 using AngleSharp.Html.Parser;
+using AngleSharp.Dom;
 
 namespace ParserSite
 {
@@ -30,9 +31,54 @@ namespace ParserSite
             List<string> matches = new List<string>(); 
             foreach (var tmp in parsePage.QuerySelectorAll("div.event__match"))
             {
-                matches.Add(tmp.OuterHtml);
+                matches.Add(tmp.GetAttribute("id").Split('_')[2]);
             }
             return matches.ToArray();
+        }
+        public static List<MatchState> GetMatch(string page)
+        {
+            HtmlParser htmlParser = new HtmlParser();
+            var parsePage = htmlParser.ParseDocument(page);
+            MatchState matchState = new MatchState();
+            List<MatchState> matchStates = new List<MatchState>();
+            List<string> score = new List<string>();
+
+            matchState.Date = parsePage.QuerySelector("div.description__time").TextContent;
+            matchState.CommandHome = parsePage.QuerySelector("div.team-text.tname-home>div.tname>div.tname__text>a.participant-imglink").TextContent;
+            matchState.CommandAway = parsePage.QuerySelector("div.team-text.tname-away>div.tname>div.tname__text>a.participant-imglink").TextContent;
+            matchState.MatchScoreHome = parsePage.QuerySelectorAll("span.scoreboard")[0].TextContent;
+            matchState.MatchScoreAway = parsePage.QuerySelectorAll("span.scoreboard")[1].TextContent;
+            //состав команд
+            foreach (var HomePlayers in parsePage.QuerySelectorAll("td.fl>div.name>a"))
+            {
+                if (matchState.HomePlayers.Count > 17) break;
+                matchState.HomePlayers.Add(HomePlayers.TextContent);
+            }
+
+            foreach (var AwayPlayers in parsePage.QuerySelectorAll("td.fr>div.name>a"))
+            {
+                if (matchState.AwayPlayers.Count > 17) break;
+                matchState.AwayPlayers.Add(AwayPlayers.TextContent);
+            }
+            //Замены		Title	"77' Вуд К. (Крауч П.)"	string
+
+            string[] Replays = new string[4];
+            var tak = parsePage.QuerySelector("td.fl>div.icon-lineup>span.substitution-out");
+            var tmp = tak.Parent;
+            string str = tmp.t;
+            //foreach (var HomeReplays in parsePage.QuerySelectorAll("td.fr>div.name>div.icon-lineup"))
+            //{
+            //    //if (matchState.HomePlayers.Count > 17) break;
+            //    var tmp = HomeReplays.Parent;
+            //    matchState.HomePlayers.Add(HomeReplays.TextContent);
+            //}
+            //matchState.ReplaysPlayers.Add(Replays);
+
+
+
+            matchStates.Add(matchState);
+
+            return matchStates;
         }
     }
 }
