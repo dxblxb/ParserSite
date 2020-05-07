@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.BtnStart = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.TBUrl = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.RTBLog = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -57,6 +57,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(110, 611);
             this.panel1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 70);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -150,16 +160,6 @@
             this.RTBLog.Size = new System.Drawing.Size(690, 111);
             this.RTBLog.TabIndex = 0;
             this.RTBLog.Text = "";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 70);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
