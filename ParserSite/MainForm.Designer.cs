@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,15 +42,19 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.TBUrl = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.RTBLog = new System.Windows.Forms.RichTextBox();
+            this.MainTable = new System.Windows.Forms.DataGridView();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainTable)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);
@@ -57,6 +64,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(110, 611);
             this.panel1.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(12, 154);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 125);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -145,21 +172,27 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.RTBLog);
+            this.panel3.Controls.Add(this.MainTable);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(110, 500);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(690, 111);
             this.panel3.TabIndex = 2;
             // 
-            // RTBLog
+            // MainTable
             // 
-            this.RTBLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RTBLog.Location = new System.Drawing.Point(0, 0);
-            this.RTBLog.Name = "RTBLog";
-            this.RTBLog.Size = new System.Drawing.Size(690, 111);
-            this.RTBLog.TabIndex = 0;
-            this.RTBLog.Text = "";
+            this.MainTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MainTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTable.Location = new System.Drawing.Point(0, 0);
+            this.MainTable.Name = "MainTable";
+            this.MainTable.Size = new System.Drawing.Size(690, 111);
+            this.MainTable.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
             // 
@@ -172,12 +205,14 @@
             this.Name = "MainForm";
             this.Text = "ParserSite";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MainTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -190,12 +225,15 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox TBUrl;
-        private System.Windows.Forms.RichTextBox RTBLog;
         private EO.WinForm.WebControl webControl1;
         private EO.WebBrowser.WebView Browser;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView MainTable;
     }
 }
 

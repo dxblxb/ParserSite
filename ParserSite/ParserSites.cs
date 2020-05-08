@@ -42,9 +42,9 @@ namespace ParserSite
             MatchState matchState = new MatchState();
             List<string> score = new List<string>();
 
-            matchState.Date = parsePage.QuerySelector("div.description__time").TextContent;
+            matchState.Date = parsePage.QuerySelector("div.description__time").TextContent.Split(' ')[0];
             matchState.TrainerHome = parsePage.QuerySelector("table#coaches>tbody>tr.odd>td.fl").TextContent.Trim();
-            matchState.TranerAway = parsePage.QuerySelector("table#coaches>tbody>tr.odd>td.fr").TextContent.Trim();
+            matchState.TrainerAway = parsePage.QuerySelector("table#coaches>tbody>tr.odd>td.fr").TextContent.Trim();
             matchState.CommandHome = parsePage.QuerySelector("div.team-text.tname-home>div.tname>div.tname__text>a.participant-imglink").TextContent;
             matchState.CommandAway = parsePage.QuerySelector("div.team-text.tname-away>div.tname>div.tname__text>a.participant-imglink").TextContent;
             matchState.MatchScoreHome = parsePage.QuerySelectorAll("span.scoreboard")[0].TextContent;
