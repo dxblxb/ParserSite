@@ -20,6 +20,28 @@ namespace ParserSite
         public static string GetPage(string link)
         {
             HttpRequest request = new HttpRequest();
+            request.AddHeader(HttpHeader.Accept,"*/*");
+            request.KeepAlive = true;
+            request.UserAgent = Http.ChromeUserAgent();
+            string response = request.Get(link).ToString();
+            return response;
+        }
+        public static string GetPage2(string link)
+        {
+            HttpRequest request = new HttpRequest();
+            request.AddHeader(HttpHeader.Accept, "*/*");
+            request.AddHeader("Accept-Encoding", "gzip, deflate, br");
+            request.AddHeader("Accept-Language", "*");
+            request.AddHeader("Host", "d.scoreboard.com");
+            request.AddHeader("Referer", "https://d.scoreboard.com/ru/x/feed/proxy-local");
+            request.AddHeader("Sec-Fetch-Dest", "empty");
+            request.AddHeader("Sec-Fetch-Mode", "cors");
+            request.AddHeader("Sec-Fetch-Site", "same-origin");
+            request.AddHeader("X-Fsign", "SW9D1eZo");
+            request.AddHeader("X-Referer", "https://www.scoreboard.com/ru/match/tjScDhWo/#match-summary");
+            request.AddHeader("X-Requested-With", "XMLHttpRequest");
+            request.KeepAlive = true;
+            request.UserAgent = Http.ChromeUserAgent();
             string response = request.Get(link).ToString();
             return response;
         }
@@ -65,13 +87,13 @@ namespace ParserSite
             foreach (var HomePlayers in parsePage.QuerySelectorAll("td.fl>div.name>a"))
             {
                 if (matchState.HomePlayers.Count > 17) break;
-                matchState.HomePlayers.Add(HomePlayers.TextContent);
+                matchState.HomePlayers.Add(HomePlayers.TextContent.Replace("(C)","").Replace("(В)","").Trim());
             }
 
             foreach (var AwayPlayers in parsePage.QuerySelectorAll("td.fr>div.name>a"))
             {
                 if (matchState.AwayPlayers.Count > 17) break;
-                matchState.AwayPlayers.Add(AwayPlayers.TextContent);
+                matchState.AwayPlayers.Add(AwayPlayers.TextContent.Replace("(C)", "").Replace("(В)", "").Trim());
             }
 
             #region Замены
@@ -188,7 +210,7 @@ namespace ParserSite
                     string[] Card = new string[3];
                     Card[0] = matchState.CommandHome;
                     Card[1] = time;
-                    Card[2] = card;
+                    Card[2] = card.Replace("(C)", "").Replace("(В)", "").Trim();
                     matchState.YCard.Add(Card);
                 }
 
@@ -223,7 +245,7 @@ namespace ParserSite
                     string[] Card = new string[3];
                     Card[0] = matchState.CommandAway;
                     Card[1] = time;
-                    Card[2] = card;
+                    Card[2] = card.Replace("(C)", "").Replace("(В)", "").Trim();
                     matchState.YCard.Add(Card);
                 }
 
@@ -434,7 +456,7 @@ namespace ParserSite
                     AutoBall[0] = matchState.CommandHome;
                     AutoBall[1] = time;
                     AutoBall[2] = names.Trim();
-                    matchState.Ball.Add(AutoBall);
+                    matchState.AutoBall.Add(AutoBall);
                     matchState.TotalFirstTimeAway = (int.Parse(matchState.TotalFirstTimeAway) + 1).ToString();
                 }
 
@@ -470,7 +492,7 @@ namespace ParserSite
                     AutoBall[0] = matchState.CommandHome;
                     AutoBall[1] = time;
                     AutoBall[2] = names.Trim();
-                    matchState.Ball.Add(AutoBall);
+                    matchState.AutoBall.Add(AutoBall);
                     matchState.TotalFirstTimeHome = (int.Parse(matchState.TotalFirstTimeHome) + 1).ToString();
                 }
 
@@ -486,8 +508,8 @@ namespace ParserSite
                 HtmlParser htmlPar = new HtmlParser();
                 var parseContent = htmlPar.ParseDocument(doc);
                 string[] stats = new string[3];
-                stats[0] = parseContent.QuerySelector("div.statText--homeValue").TextContent.Trim('%');
-                stats[1] = parseContent.QuerySelector("div.statText--titleValue").TextContent;
+                stats[1] = parseContent.QuerySelector("div.statText--homeValue").TextContent.Trim('%');
+                stats[0] = parseContent.QuerySelector("div.statText--titleValue").TextContent;
                 stats[2] = parseContent.QuerySelector("div.statText--awayValue").TextContent.Trim('%');
                 matchState.Stats.Add(stats);
                 
